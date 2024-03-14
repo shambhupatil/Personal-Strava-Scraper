@@ -5,10 +5,8 @@
 using json = nlohmann::json;
 
 
-void requestAccessToken(std::string clientId, std::string clientSecret) {
-	return;
-}
-std::string refreshAccessToken(std::string clientId, std::string clientSecret,std::string refresh_token) {
+
+std::string requestAccessToken(std::string clientId, std::string clientSecret,std::string refresh_token) {
 	cpr::Parameters parameters = {
 		{"client_id",clientId},
 		{"client_secret",clientSecret},
@@ -22,6 +20,4 @@ std::string refreshAccessToken(std::string clientId, std::string clientSecret,st
 
 	json jsonResponse = json::parse(r.text);
 	return jsonResponse["access_token"];
-
-
 }
