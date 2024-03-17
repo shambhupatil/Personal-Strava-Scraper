@@ -1,6 +1,7 @@
 //header guard??
-
+#include <aws/core/Aws.h>
 #include <nlohmann/json.hpp>
+
 using json = nlohmann::json;
 
-json getAndUpdateCreds();
+std::string getAndUpdateCreds(std::string& table_name, std::string& client_id);

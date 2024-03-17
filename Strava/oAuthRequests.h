@@ -1,5 +1,7 @@
 //Header guard??
 
 
+#include <nlohmann/json.hpp>
+using json = nlohmann::json;
 
-std::string requestAccessToken(std::string clientId, std::string clientSecret,std::string refresh_token);
+json requestAccessToken(std::string clientId, std::string clientSecret,std::string refresh_token);
