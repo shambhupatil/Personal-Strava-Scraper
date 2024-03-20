@@ -5,6 +5,8 @@
 #include "awsRequests.h"
 #include <aws/core/Aws.h>
 #include "stravaRequests.h"
+#include "misc.h"
+#include <map>
 
 
 int main(int argc, char** argv) {
@@ -13,22 +15,18 @@ int main(int argc, char** argv) {
 	Aws::String client_id = "123032";
 	std::string access_token = getAndUpdateCreds(table_name, client_id);
 	std::cout << access_token << std::endl;
-	getActivites(access_token, 5);
+	//json r  = getActivites(access_token, 5,convertDateToTimestamp(10,0,2024,true),convertDateToTimestamp(15,0,2024,true));
+	//for (auto& a : r) {
+	//	std::cout << a<< std::endl;
+	//	std::cout << a.at("start_date_local") << std::endl;
+	//}
+	std::unordered_map<std::string, float> aggregate = getAggregateOfActivities(1, 0, 2024, 20, 2, 2024, "year", "run");
 
-	//cpr::Parameters parameters = {
-	//	{"client_id","123032"},
-	//	{"redirect_uri","http://localhost"},
-	//	{"response_type","code"},
-	//	{"approval_prompt","auto"},
-	//	{"scope","read_all"}
-	//};
-	//cpr::Response r = cpr::Get(cpr::Url{ "https://www.strava.com/oauth/mobile/authorize" },
-	//	parameters);
-	//std::cout << "Status code: " << r.status_code << '\n';
+	auto it = aggregate.cbegin();
+	while (it!=aggregate.cend()) {
+		std::cout << it->first << ": " << it->second << std::endl;
+		it++;
+	}
 
-	//std::cout << "Text: " << r.text << '\n';
-	//std::cout << r.url << std::endl;
-	int a = 0;
-	std::cin >> a;
 	return 0;
 }

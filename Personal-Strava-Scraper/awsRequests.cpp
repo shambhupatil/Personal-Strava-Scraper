@@ -34,7 +34,7 @@ std::string getAndUpdateCreds(std::string& table_name, std::string& client_id) {
 
 	if (!items.empty()) {
 		for (const auto& i : items) {
-			std::cout << i.first << " : " << i.second.GetS() << std::endl;
+			//std::cout << i.first << " : " << i.second.GetS() << std::endl;
 		}
 	}
 	else {
