@@ -8,14 +8,14 @@
 #include <ctime>
 
 
-std::string getAndUpdateCreds(std::string &table_name, std::string &client_id) {
-	
+std::string getAndUpdateCreds(std::string& table_name, std::string& client_id) {
+
 	//1. connect to dynamo db and get creds
 	//2. if expires_at is in the future go to step 5
 	//3. do a requestAccessToken() which will get the latest access_toke, refresh_token and expires_at.
 	//4. finally update the creds at dynamodb
 	//5. return creds in json format
-	
+
 
 	//1.
 	Aws::SDKOptions options;
@@ -43,7 +43,7 @@ std::string getAndUpdateCreds(std::string &table_name, std::string &client_id) {
 	}
 	//2.
 
-	
+
 	int expires_at = std::stoi(std::string(items.at("expires_at").GetS().c_str()));
 	std::time_t curr_time = std::time(nullptr);
 	//std::cout << result;
@@ -59,15 +59,15 @@ std::string getAndUpdateCreds(std::string &table_name, std::string &client_id) {
 		std::string new_access_token = newCreds["access_token"];
 
 
-		
+
 
 		request.SetUpdateExpression("SET #a = :value1, #b = :value2, #c = :value3");
-		
+
 		Aws::Map<Aws::String, Aws::DynamoDB::Model::AttributeValue> expressionAttributeValues;
 		expressionAttributeValues[":value1"] = Aws::DynamoDB::Model::AttributeValue().SetS(new_expires_at);
 		expressionAttributeValues[":value2"] = Aws::DynamoDB::Model::AttributeValue().SetS(new_refresh_token);
 		expressionAttributeValues[":value3"] = Aws::DynamoDB::Model::AttributeValue().SetS(new_access_token);
-		
+
 		request.SetExpressionAttributeNames({ {"#a","expires_at"},{"#b","refresh_token"},{"#c","access_token"} });
 		request.SetExpressionAttributeValues(expressionAttributeValues);
 		//int new_expires_at = newCreds["expires_at"];

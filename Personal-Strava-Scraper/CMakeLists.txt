@@ -1,11 +1,15 @@
-﻿# CMakeList.txt : CMake project for Strava, include source and define
+﻿# CMakeList.txt : CMake project for Personal-Strava-Scraper, include source and define
 # project specific logic here.
 #
 
 # Add source to this project's executable.
-set(CMAKE_CXX_STANDARD 17)
-add_executable (Strava "Strava.cpp" "Strava.h" "oAuthRequests.cpp" "oAuthRequests.h" "awsRequests.cpp" "awsRequests.h" "misc.cpp" "misc.h")
+add_executable (Personal-Strava-Scraper "Personal-Strava-Scraper.cpp" "Personal-Strava-Scraper.h" "oAuthRequests.cpp" "oAuthRequests.h" "awsRequests.cpp" "awsRequests.h" "misc.cpp" "misc.h" "stravaRequests.cpp" "stravaRequests.h")
 
+if (CMAKE_VERSION VERSION_GREATER 3.12)
+  set_property(TARGET Personal-Strava-Scraper PROPERTY CXX_STANDARD 20)
+endif()
+
+# TODO: Add tests and install targets if needed.
 if(WIN32) # Install dlls in the same directory as the executable on Windows
     set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}${BIN_SUB_DIR})
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}${BIN_SUB_DIR})
@@ -50,6 +54,6 @@ if (WINDOWS_BUILD)
 endif ()
 
 
-target_link_libraries(Strava PRIVATE ${AWSSDK_LINK_LIBRARIES})
-target_link_libraries(Strava PRIVATE nlohmann_json::nlohmann_json)
-target_link_libraries(Strava PRIVATE cpr::cpr)
+target_link_libraries(Personal-Strava-Scraper PRIVATE ${AWSSDK_LINK_LIBRARIES})
+target_link_libraries(Personal-Strava-Scraper PRIVATE nlohmann_json::nlohmann_json)
+target_link_libraries(Personal-Strava-Scraper PRIVATE cpr::cpr)

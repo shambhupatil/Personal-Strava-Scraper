@@ -4,7 +4,7 @@
 
 
 
-json requestAccessToken(std::string clientId, std::string clientSecret,std::string refresh_token) {
+json requestAccessToken(std::string clientId, std::string clientSecret, std::string refresh_token) {
 	cpr::Parameters parameters = {
 		{"client_id",clientId},
 		{"client_secret",clientSecret},
