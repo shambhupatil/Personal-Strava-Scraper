@@ -1,11 +1,11 @@
 ﻿#include <iostream>
 #include <string>
 #include <cpr/cpr.h>
-#include "oAuthRequests.h"
-#include "awsRequests.h"
+#include "../include/oAuthRequests.h"
+#include "../include/awsRequests.h"
 #include <aws/core/Aws.h>
-#include "stravaRequests.h"
-#include "misc.h"
+#include "../include/stravaRequests.h"
+#include "../include/misc.h"
 #include <map>
 
 
@@ -20,10 +20,10 @@ int main(int argc, char** argv) {
 	//	std::cout << a<< std::endl;
 	//	std::cout << a.at("start_date_local") << std::endl;
 	//}
-	std::unordered_map<std::string, float> aggregate = getAggregateOfActivities(1, 0, 2024, 20, 2, 2024, "year", "run");
+	std::unordered_map<std::string, float> aggregate = getAggregateOfActivities(1, 0, 2024, 22, 2, 2024, "month", "run");
 
 	auto it = aggregate.cbegin();
-	while (it!=aggregate.cend()) {
+	while (it != aggregate.cend()) {
 		std::cout << it->first << ": " << it->second << std::endl;
 		it++;
 	}

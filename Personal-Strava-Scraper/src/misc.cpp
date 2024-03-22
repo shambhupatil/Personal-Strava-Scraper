@@ -1,4 +1,4 @@
-#include "misc.h"
+#include "../include/misc.h"
 #include <ctime>
 
 json getAwsCreds(std::string file_name) {

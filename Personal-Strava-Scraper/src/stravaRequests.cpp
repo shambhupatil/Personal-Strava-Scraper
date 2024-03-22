@@ -1,9 +1,9 @@
 #include <iostream>
-#include "stravaRequests.h"
+#include "../include/stravaRequests.h"
 #include <aws/core/Aws.h>
 #include <cpr/cpr.h>
-#include "misc.h"
-#include "awsRequests.h"
+#include "../include/misc.h"
+#include "../include/awsRequests.h"
 #include <map>
 
 using json = nlohmann::json;

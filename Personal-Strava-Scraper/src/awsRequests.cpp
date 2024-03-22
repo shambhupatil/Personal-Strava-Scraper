@@ -1,6 +1,6 @@
-#include "awsRequests.h"
-#include "misc.h"
-#include "oAuthRequests.h"
+#include "../include/awsRequests.h"
+#include "../include/misc.h"
+#include "../include/oAuthRequests.h"
 #include <aws/core/Aws.h>
 #include <aws/dynamodb/DynamoDBClient.h>
 #include <aws/dynamodb/model/GetItemRequest.h>

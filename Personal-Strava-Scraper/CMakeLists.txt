@@ -3,7 +3,7 @@
 #
 
 # Add source to this project's executable.
-add_executable (Personal-Strava-Scraper "Personal-Strava-Scraper.cpp" "Personal-Strava-Scraper.h" "oAuthRequests.cpp" "oAuthRequests.h" "awsRequests.cpp" "awsRequests.h" "misc.cpp" "misc.h" "stravaRequests.cpp" "stravaRequests.h")
+add_executable (Personal-Strava-Scraper "src/Personal-Strava-Scraper.cpp" "include/Personal-Strava-Scraper.h" "src/oAuthRequests.cpp" "include/oAuthRequests.h" "src/awsRequests.cpp" "include/awsRequests.h" "src/misc.cpp" "include/misc.h" "src/stravaRequests.cpp" "include/stravaRequests.h")
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET Personal-Strava-Scraper PROPERTY CXX_STANDARD 20)
