@@ -1,4 +1,5 @@
-//Header guard?
+#pragma once
+
 #include <vector>
 #include <nlohmann/json.hpp>
 #include <map>
@@ -14,3 +15,5 @@ std::unordered_map<std::string, float> getDayAggregate(json activities, std::str
 std::unordered_map<std::string, float> getMonthAggregate(json activities, std::string activityType);
 
 std::unordered_map<std::string, float> getYearAggregate(json activities, std::string activityType);
+
+json getActivitiesOfDay(int day, int month, int year);

@@ -1,4 +1,4 @@
-//header guard??
+#pragma once
 #include <aws/core/Aws.h>
 #include <nlohmann/json.hpp>
 
