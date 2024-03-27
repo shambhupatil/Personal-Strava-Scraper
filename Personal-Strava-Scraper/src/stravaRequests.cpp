@@ -23,13 +23,11 @@ json getActivites(std::string access_token, int num_of_activities, int start_tim
 	return json::parse(r.text);
 }
 
-std::unordered_map<std::string, float> getAggregateOfActivities(int start_date, int start_month, int start_year, int end_date, int end_month, int end_year,
+std::unordered_map<std::string, float> getAggregateOfActivities(std::string access_token, int start_date, int start_month, int start_year, int end_date, int end_month, int end_year,
 	std::string period, std::string activityType) {
 	int start_time = convertDateToTimestamp(start_date, start_month, start_year, true);
 	int end_time = convertDateToTimestamp(end_date, end_month, end_year, true);
-	std::string table_name = "strava-creds";
-	std::string client_id = "123032";
-	std::string access_token = getAndUpdateCreds(table_name, client_id);
+	
 
 	
 
@@ -86,12 +84,9 @@ std::unordered_map<std::string, float> getYearAggregate(json activities, std::st
 }
 
 
-json getActivitiesOfDay(int day, int month, int year) {
+json getActivitiesOfDay(std::string access_token, int day, int month, int year) {
 	int start_time = convertDateToTimestamp(day, month, year, true);
 	int end_time = start_time + 86400;
-	std::string table_name = "strava-creds";
-	std::string client_id = "123032";
-	std::string access_token = getAndUpdateCreds(table_name, client_id);
 
 	return getActivites(access_token, 10, start_time, end_time);
 }
@@ -99,10 +94,7 @@ json getActivitiesOfDay(int day, int month, int year) {
 
 
 
-json getLapsOfActivity(long long int activity_id) {
-	std::string table_name = "strava-creds";
-	std::string client_id = "123032";
-	std::string access_token = getAndUpdateCreds(table_name, client_id);
+json getLapsOfActivity(std::string access_token, long long int activity_id) {
 	cpr::Response r1 = cpr::Get(cpr::Url{ std::format("https://www.strava.com/api/v3/activities/{}/laps",std::to_string(activity_id)) },
 		cpr::Bearer{ access_token });
 	return json::parse(r1.text);

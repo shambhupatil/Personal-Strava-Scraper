@@ -4,13 +4,13 @@
 
 
 
-void displayLapsOfDaysActivity(int day, int month, int year) {
-	json activities = getActivitiesOfDay(day, month, year);
+void displayLapsOfDaysActivity(int day, int month, int year, std::string access_token) {
+	json activities = getActivitiesOfDay(access_token, day, month, year);
 
 	for (auto& activity : activities) {
 		long long int activity_id = activity["id"];
 		
-		json laps = getLapsOfActivity(activity_id);
+		json laps = getLapsOfActivity(access_token, activity_id);
 		std::cout << activity_id << "\n";
 		displayLapsDetails(laps);
 	}
@@ -23,3 +23,5 @@ void displayLapsDetails(json laps) {
 		std::cout << lap["name"] <<"		" << lap["distance"] << "		" << lap["moving_time"] << "\n";
 	}
 }
+
+

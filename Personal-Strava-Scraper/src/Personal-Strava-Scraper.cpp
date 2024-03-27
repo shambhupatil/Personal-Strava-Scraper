@@ -34,7 +34,7 @@ int main(int argc, char** argv) {
 	//	it++;
 	//}
 
-	displayLapsOfDaysActivity(25, 2, 2024);
+	displayLapsOfDaysActivity(25, 2, 2024, access_token);
 
 	return 0;
 }
