@@ -99,3 +99,11 @@ json getActivitiesOfDay(int day, int month, int year) {
 
 
 
+json getLapsOfActivity(long long int activity_id) {
+	std::string table_name = "strava-creds";
+	std::string client_id = "123032";
+	std::string access_token = getAndUpdateCreds(table_name, client_id);
+	cpr::Response r1 = cpr::Get(cpr::Url{ std::format("https://www.strava.com/api/v3/activities/{}/laps",std::to_string(activity_id)) },
+		cpr::Bearer{ access_token });
+	return json::parse(r1.text);
+}

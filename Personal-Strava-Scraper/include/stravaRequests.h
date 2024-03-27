@@ -17,3 +17,5 @@ std::unordered_map<std::string, float> getMonthAggregate(json activities, std::s
 std::unordered_map<std::string, float> getYearAggregate(json activities, std::string activityType);
 
 json getActivitiesOfDay(int day, int month, int year);
+
+json getLapsOfActivity(long long int activity_id);
